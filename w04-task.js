@@ -2,93 +2,63 @@
 
 /* Profile Object  */
 /* Populate Profile Object with placesLive objects */
-const myprofile = {
+let myProfile = {
     name: "Victor Provost",
-    photo: {
-        src: "images/victor.png",
-        alt: "my profile picture"
-    },
-    favoritefoods: [
-        "Rice",
-        "Apples",
-        "Chicken",
-        "Egusi soup",
-        "Ice cream"
+    photo: "images/victor.png",
+    favoriteFoods: [
+        "Beans", "Plantain", "Potatoes", "Soya Beans", "Bean Cake", "Bannana", "Yoghurt", "Chocolate", "Egusi"
     ],
     hobbies: [
-        "Playing music",
-        "Eating",
-        "Drawing",
-        "Watching movies",
-        "Traveling"
+        "Cooking", "Walking", "Coding", "Playing video games", "Travelling", "Reading"
     ],
-
     placesLived: [
         {
-            place: "Bayelsa State",
-            length: "5 years"
+            place: "Lagos, Nigeria",
+            length: "23 years"
         },
         {
-            place: "Lagos State",
-            length: "10 years"
+            place: "Accra, Ghana",
+            length: "2 weeks"
         },
         {
-            place: "FCT Abuja",
-            length: "3 years"
+            place: "Cape Town, South Africa",
+            length: "2 years"
+        },
+        {
+            place: "Nairobi, Kenya",
+            length: "2 years"
         }
     ]
 };
 
-// Adding an additional place where you lived
-myprofile.placesLived.push(
-    {
-        place: "Delta State",
-        length: "2 years"
-    }
-);
-
 /* DOM Manipulation - Output */
-document.querySelector("#name").innerHTML = `My name is <em>${myprofile.name}</em>`;
+
 /* Name */
-
+document.querySelector('#name').textContent = myProfile.name;
 /* Photo with attributes */
-const photoElement = document.getElementById('photo');
-photoElement.src = myprofile.photo.src;
-photoElement.alt = myprofile.photo.alt;
-
+document.querySelector('#photo').src = myProfile.photo;
 /* Favorite Foods List*/
-myprofile.favoritefoods.forEach(food => {
-    let li = document.createElement("li");
-    li.textContent = food;
-    document.querySelector("#favorite-foods").appendChild(li);
-});
-
+myProfile.favoriteFoods.forEach(food => {
+    let listItem = document.createElement('li');
+    listItem.textContent = food;
+    document.querySelector('#favorite-foods').appendChild(listItem);
+})
 /* Hobbies List */
-const hobbiesList = document.getElementById('hobbies');
-myprofile.hobbies.forEach(hobby => {
+myProfile.hobbies.forEach(hobby => {
     let listItem = document.createElement('li');
     listItem.textContent = hobby;
-    hobbiesList.appendChild(listItem);
-});
+    document.querySelector('#hobbies').appendChild(listItem);
+})
 
 /* Places Lived DataList */
-const placesList = document.getElementById('places-lived');
-myprofile.placesLived.forEach(place => {
-    // Create a new <dl> element for each place
-    const dlElement = document.createElement('dl');
-
-    // Create <dt> element for place name
-    const dtElement = document.createElement('dt');
+myProfile.placesLived.forEach(place => {
+    let dtElement = document.createElement('dt');
     dtElement.textContent = place.place;
 
-    // Create <dd> element for place length
-    const ddElement = document.createElement('dd');
+    let ddElement = document.createElement('dd');
     ddElement.textContent = place.length;
 
-    // Append <dt> and <dd> to the <dl> element
-    dlElement.appendChild(dtElement);
-    dlElement.appendChild(ddElement);
+    document.querySelector('#places-lived').appendChild(dtElement);
+    document.querySelector('#places-lived').appendChild(ddElement);
 
-    // Append the <dl> element to the placesList
-    placesList.appendChild(dlElement);
-});
+})
